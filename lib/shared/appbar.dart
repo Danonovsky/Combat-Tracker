@@ -1,24 +1,32 @@
+import 'package:combat_tracker/pages/layout_page.dart';
+import 'package:combat_tracker/pages/manage_page.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/preview_page.dart';
 
 class Appbar extends StatelessWidget implements PreferredSizeWidget {
-  Appbar({super.key, required this.title});
+  const Appbar({super.key, required this.title});
   final String title;
-  final List<Widget> navItems = [
-    TextButton(onPressed: () {}, child: const Text("Manage")),
-    TextButton(onPressed: () {}, child: const Text("Preview")),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> navItems = [
+      TextButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed(ManagePage.route);
+          },
+          child: const Text("Manage")),
+      TextButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed(PreviewPage.route);
+          },
+          child: const Text("Preview")),
+    ];
     var mobile = MediaQuery.of(context).size.width < 700;
     return AppBar(
       title: TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const PreviewPage(),
-            ));
+            Navigator.of(context).pushReplacementNamed(LayoutPage.route);
           },
           child: Text(title)),
       actions: mobile ? null : navItems,

@@ -1,3 +1,5 @@
+import 'package:combat_tracker/pages/manage_page.dart';
+import 'package:combat_tracker/pages/preview_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/layout_page.dart';
 
@@ -13,10 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Combat Tracker',
       debugShowCheckedModeBanner: false,
+      routes: {
+        PreviewPage.route: (context) => const PreviewPage(),
+        ManagePage.route: (context) => const ManagePage(),
+        LayoutPage.route: (context) => const LayoutPage()
+      },
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: LayoutPage(title: 'Combat Tracker'),
+      home: const LayoutPage(),
     );
   }
 }

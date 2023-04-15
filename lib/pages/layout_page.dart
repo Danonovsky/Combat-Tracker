@@ -2,12 +2,12 @@ import 'package:combat_tracker/shared/appbar.dart';
 import 'package:flutter/material.dart';
 
 class LayoutPage extends StatelessWidget {
-  const LayoutPage({super.key, required this.title});
-  final String title;
+  static const String route = '';
+  const LayoutPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Appbar(title: 'Combat Tracker'),
+      appBar: const Appbar(title: 'Combat Tracker'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
