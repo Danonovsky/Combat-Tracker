@@ -1,9 +1,11 @@
 import 'package:combat_tracker/pages/manage_page.dart';
 import 'package:combat_tracker/pages/preview_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'pages/layout_page.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 

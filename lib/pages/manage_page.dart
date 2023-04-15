@@ -1,12 +1,20 @@
+import 'package:combat_tracker/components/entity/entity.dart';
+import 'package:combat_tracker/components/entity/entityView.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../shared/appbar.dart';
 
-class ManagePage extends StatelessWidget {
+class ManagePage extends StatefulWidget {
   static const String route = '/manage';
   const ManagePage({super.key});
+
+  @override
+  State<ManagePage> createState() => _ManagePageState();
+}
+
+class _ManagePageState extends State<ManagePage> {
+  final List<Entity> _entities = [
+    Entity(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +23,7 @@ class ManagePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text('Manage'),
-          ],
+          children: _entities.map((e) => EntityView(entity: e)).toList(),
         ),
       ),
     );
