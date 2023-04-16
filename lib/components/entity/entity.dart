@@ -11,4 +11,12 @@ class Entity {
 
   double get displayHp => showHp ? hp / maxHp : 1.0;
   String get displayStatus => '$status${showHp ? ' ($hp/$maxHp)' : ''}';
+
+  Entity();
+  Entity.from({
+    required this.name,
+    required this.hp,
+    required this.maxHp,
+    this.initiative = 0,
+  });
 }

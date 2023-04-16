@@ -27,10 +27,13 @@ class _EntityViewState extends State<EntityView> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: LinearProgressIndicator(
-                      value: _entity.displayHp,
-                      color: _entity.color,
-                      minHeight: 20,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                      child: LinearProgressIndicator(
+                        value: _entity.displayHp,
+                        color: _entity.color,
+                        minHeight: 20,
+                      ),
                     ),
                   ),
                   Center(
