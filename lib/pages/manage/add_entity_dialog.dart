@@ -1,6 +1,6 @@
 import 'package:combat_tracker/components/entity/entity.dart';
+import 'package:combat_tracker/shared/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AddEntityDialog extends StatefulWidget {
   const AddEntityDialog({super.key});
@@ -15,24 +15,6 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
   final maxHpController = TextEditingController();
   final initiativeController = TextEditingController();
 
-  TextField _textField(TextEditingController controller, String label) {
-    return TextField(
-      decoration: _decoration(label),
-      controller: controller,
-    );
-  }
-
-  TextField _numericField(TextEditingController controller, String label) {
-    return TextField(
-      keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      decoration: _decoration(label),
-      controller: controller,
-    );
-  }
-
-  InputDecoration _decoration(String label) => InputDecoration(labelText: label);
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -40,18 +22,14 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _textField(nameController, 'Name'),
-          _numericField(hpController, 'Hp'),
-          _numericField(maxHpController, 'Max Hp'),
-          _numericField(initiativeController, 'Initiative'),
+          textField(nameController, 'Name'),
+          numericField(hpController, 'Hp'),
+          numericField(maxHpController, 'Max Hp'),
+          numericField(initiativeController, 'Initiative'),
         ],
       ),
-      actionsAlignment: MainAxisAlignment.center,
+      actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
-        ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
-        ),
         ElevatedButton(
           onPressed: () {
             var entity = Entity.from(
@@ -63,6 +41,10 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
             Navigator.pop(context, entity);
           },
           child: const Text('Add'),
+        ),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
         ),
       ],
     );

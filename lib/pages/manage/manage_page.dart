@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:combat_tracker/components/entity/entity.dart';
 import 'package:combat_tracker/components/entity/entity_view.dart';
 import 'package:combat_tracker/pages/manage/add_entity_dialog.dart';
+import 'package:combat_tracker/shared/appbar.dart';
 import 'package:flutter/material.dart';
-import '../../shared/appbar.dart';
 
 class ManagePage extends StatefulWidget {
   static const String route = '/manage';
@@ -15,9 +13,18 @@ class ManagePage extends StatefulWidget {
 }
 
 class _ManagePageState extends State<ManagePage> {
-  final List<Entity> _entities = [
-    Entity(),
-  ];
+  final List<Entity> _entities = [];
+
+  addEntity() async {
+    var entity = await showDialog<Entity>(
+      context: context,
+      builder: (context) => const AddEntityDialog(),
+    );
+    if (entity == null) return;
+    setState(() {
+      _entities.add(entity);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +38,7 @@ class _ManagePageState extends State<ManagePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          var entity = await showDialog<Entity>(
-            context: context,
-            builder: (context) => const AddEntityDialog(),
-          );
-        },
+        onPressed: addEntity,
         tooltip: 'Add',
         child: const Icon(Icons.add),
       ),
