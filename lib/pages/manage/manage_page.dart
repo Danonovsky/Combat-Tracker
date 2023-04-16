@@ -1,7 +1,7 @@
 import 'package:combat_tracker/components/entity/entity.dart';
-import 'package:combat_tracker/components/entity/entityView.dart';
+import 'package:combat_tracker/components/entity/entity_view.dart';
 import 'package:flutter/material.dart';
-import '../shared/appbar.dart';
+import '../../shared/appbar.dart';
 
 class ManagePage extends StatefulWidget {
   static const String route = '/manage';
@@ -25,6 +25,12 @@ class _ManagePageState extends State<ManagePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: _entities.map((e) => EntityView(entity: e)).toList(),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Add',
+        child: const Icon(Icons.add),
       ),
     );
   }

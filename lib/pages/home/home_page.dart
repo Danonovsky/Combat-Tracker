@@ -1,9 +1,9 @@
 import 'package:combat_tracker/shared/appbar.dart';
 import 'package:flutter/material.dart';
 
-class LayoutPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   static const String route = '';
-  const LayoutPage({super.key});
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

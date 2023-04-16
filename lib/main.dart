@@ -1,8 +1,8 @@
-import 'package:combat_tracker/pages/manage_page.dart';
-import 'package:combat_tracker/pages/preview_page.dart';
+import 'package:combat_tracker/pages/home/home_page.dart';
+import 'package:combat_tracker/pages/manage/manage_page.dart';
+import 'package:combat_tracker/pages/preview/preview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'pages/layout_page.dart';
 
 void main() {
   usePathUrlStrategy();
@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
       routes: {
         PreviewPage.route: (context) => const PreviewPage(),
         ManagePage.route: (context) => const ManagePage(),
-        LayoutPage.route: (context) => const LayoutPage()
+        HomePage.route: (context) => const HomePage()
       },
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const LayoutPage(),
+      home: const HomePage(),
     );
   }
 }

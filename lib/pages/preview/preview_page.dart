@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../shared/appbar.dart';
+import '../../shared/appbar.dart';
 
 class PreviewPage extends StatefulWidget {
   static const String route = '/preview';
