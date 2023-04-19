@@ -34,9 +34,21 @@ class _InputNumberState extends State<InputNumber> {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Flexible(child: IconButton(onPressed: _decrease, icon: const Icon(Icons.remove))),
-      Flexible(child: numericField(_controller, _name)),
-      Flexible(child: IconButton(onPressed: _increase, icon: const Icon(Icons.add))),
+      Flexible(
+        child: IconButton(
+          onPressed: _decrease,
+          icon: const Icon(Icons.remove),
+        ),
+      ),
+      Flexible(
+        child: numericField(_controller, _name),
+      ),
+      Flexible(
+        child: IconButton(
+          onPressed: _increase,
+          icon: const Icon(Icons.add),
+        ),
+      ),
     ]);
   }
 }

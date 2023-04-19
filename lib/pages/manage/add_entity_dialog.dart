@@ -16,6 +16,20 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
   final maxHpController = TextEditingController();
   final initiativeController = TextEditingController();
 
+  _add() {
+    if (nameController.text == '' ||
+        hpController.text == '' ||
+        maxHpController.text == '' ||
+        initiativeController.text == '') return;
+    var entity = Entity.from(
+      name: nameController.text,
+      hp: int.parse(hpController.text),
+      maxHp: int.parse(maxHpController.text),
+      initiative: int.parse(initiativeController.text),
+    );
+    Navigator.pop(context, entity);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -32,19 +46,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
         ElevatedButton(
-          onPressed: () {
-            if (nameController.text == '' ||
-                hpController.text == '' ||
-                maxHpController.text == '' ||
-                initiativeController.text == '') return;
-            var entity = Entity.from(
-              name: nameController.text,
-              hp: int.parse(hpController.text),
-              maxHp: int.parse(maxHpController.text),
-              initiative: int.parse(initiativeController.text),
-            );
-            Navigator.pop(context, entity);
-          },
+          onPressed: _add,
           child: const Text('Add'),
         ),
         ElevatedButton(
