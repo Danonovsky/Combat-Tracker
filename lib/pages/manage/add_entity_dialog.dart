@@ -1,5 +1,6 @@
 import 'package:combat_tracker/components/entity/entity.dart';
 import 'package:combat_tracker/shared/utils.dart';
+import 'package:combat_tracker/shared/widgets/input_number.dart';
 import 'package:flutter/material.dart';
 
 class AddEntityDialog extends StatefulWidget {
@@ -23,8 +24,8 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           textField(nameController, 'Name'),
-          numericField(hpController, 'Hp'),
-          numericField(maxHpController, 'Max Hp'),
+          InputNumber(controller: hpController, name: 'Hp'),
+          InputNumber(controller: maxHpController, name: 'Max Hp'),
           numericField(initiativeController, 'Initiative'),
         ],
       ),
@@ -32,6 +33,10 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
       actions: [
         ElevatedButton(
           onPressed: () {
+            if (nameController.text == '' ||
+                hpController.text == '' ||
+                maxHpController.text == '' ||
+                initiativeController.text == '') return;
             var entity = Entity.from(
               name: nameController.text,
               hp: int.parse(hpController.text),
