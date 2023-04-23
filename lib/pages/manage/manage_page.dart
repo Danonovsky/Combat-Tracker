@@ -1,5 +1,5 @@
 import 'package:combat_tracker/components/entity/entity.dart';
-import 'package:combat_tracker/components/entity/entity_view.dart';
+import 'package:combat_tracker/components/entity/entity_admin_view.dart';
 import 'package:combat_tracker/pages/manage/add_entity_dialog.dart';
 import 'package:combat_tracker/shared/appbar.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _ManagePageState extends State<ManagePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _entities.map((e) => EntityView(entity: e)).toList(),
+          children: _entities.map((e) => EntityAdminView(entity: e)).toList(),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

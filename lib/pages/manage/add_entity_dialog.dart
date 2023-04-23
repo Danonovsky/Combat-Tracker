@@ -19,12 +19,12 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
 
   _add() {
     if (nameController.text == '' ||
-        hpController.text == '' ||
+        (hpController.text == '' && _matchHp == false) ||
         maxHpController.text == '' ||
         initiativeController.text == '') return;
     var entity = Entity.from(
       name: nameController.text,
-      hp: int.parse(hpController.text),
+      hp: int.parse(_matchHp ? maxHpController.text : hpController.text),
       maxHp: int.parse(maxHpController.text),
       initiative: int.parse(initiativeController.text),
     );
