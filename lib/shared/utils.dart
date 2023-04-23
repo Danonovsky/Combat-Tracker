@@ -8,8 +8,9 @@ TextField textField(TextEditingController controller, String label) {
   );
 }
 
-TextField numericField(TextEditingController controller, String label) {
+TextField numericField(TextEditingController controller, String label, bool active) {
   return TextField(
+    enabled: active,
     keyboardType: TextInputType.number,
     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
     decoration: decoration(label),

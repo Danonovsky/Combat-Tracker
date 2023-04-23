@@ -15,6 +15,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
   final hpController = TextEditingController();
   final maxHpController = TextEditingController();
   final initiativeController = TextEditingController();
+  var _matchHp = true;
 
   _add() {
     if (nameController.text == '' ||
@@ -30,6 +31,16 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
     Navigator.pop(context, entity);
   }
 
+  _switchMatchHp(value) {
+    if (value == null) return;
+    setState(() {
+      if (value == false) {
+        hpController.text = maxHpController.text;
+      }
+      _matchHp = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -38,9 +49,21 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           textField(nameController, 'Name'),
-          InputNumber(controller: hpController, name: 'Hp'),
           InputNumber(controller: maxHpController, name: 'Max Hp'),
-          numericField(initiativeController, 'Initiative'),
+          Row(
+            children: [
+              Flexible(
+                child: InputNumber(
+                  controller: _matchHp ? maxHpController : hpController,
+                  name: 'Hp',
+                  active: !_matchHp,
+                ),
+              ),
+              Checkbox(value: _matchHp, onChanged: _switchMatchHp),
+              const Text('Match max hp'),
+            ],
+          ),
+          InputNumber(controller: initiativeController, name: 'Initiative'),
         ],
       ),
       actionsAlignment: MainAxisAlignment.spaceBetween,
