@@ -1,5 +1,6 @@
 import 'package:combat_tracker/components/entity/entity.dart';
 import 'package:combat_tracker/shared/utils.dart';
+import 'package:combat_tracker/shared/widgets/flexible_input_number.dart';
 import 'package:combat_tracker/shared/widgets/input_number.dart';
 import 'package:flutter/material.dart';
 
@@ -52,12 +53,10 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
           InputNumber(controller: maxHpController, name: 'Max Hp'),
           Row(
             children: [
-              Flexible(
-                child: InputNumber(
-                  controller: _matchHp ? maxHpController : hpController,
-                  name: 'Hp',
-                  active: !_matchHp,
-                ),
+              FlexibleInputNumber(
+                controller: _matchHp ? maxHpController : hpController,
+                name: 'Hp',
+                active: !_matchHp,
               ),
               Checkbox(value: _matchHp, onChanged: _switchMatchHp),
               const Text('Match max hp'),
