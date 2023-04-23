@@ -22,7 +22,7 @@ class _EntityAdminViewState extends State<EntityAdminView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(_entity.name),
-            Expanded(
+            Flexible(
               child: Stack(
                 children: [
                   Padding(

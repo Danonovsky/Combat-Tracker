@@ -13,7 +13,11 @@ class ManagePage extends StatefulWidget {
 }
 
 class _ManagePageState extends State<ManagePage> {
-  final List<Entity> _entities = [];
+  final List<Entity> _entities = [
+    Entity(),
+    Entity(),
+    Entity(),
+  ];
 
   addEntity() async {
     var entity = await showDialog<Entity>(
