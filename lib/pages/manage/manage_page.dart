@@ -35,9 +35,20 @@ class _ManagePageState extends State<ManagePage> {
     return Scaffold(
       appBar: const Appbar(title: 'Combat Tracker - Manage'),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _entities.map((e) => EntityAdminView(entity: e)).toList(),
+        child: ReorderableListView(
+          onReorder: ((oldIndex, newIndex) {
+            setState(() {
+              if (newIndex > oldIndex) newIndex--;
+              final item = _entities.removeAt(oldIndex);
+              _entities.insert(newIndex, item);
+            });
+          }),
+          children: _entities
+              .map((e) => EntityAdminView(
+                    key: ValueKey(e),
+                    entity: e,
+                  ))
+              .toList(),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
