@@ -30,19 +30,21 @@ class _ManagePageState extends State<ManagePage> {
     });
   }
 
+  _reorder(oldIndex, newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) newIndex--;
+      final item = _entities.removeAt(oldIndex);
+      _entities.insert(newIndex, item);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const Appbar(title: 'Combat Tracker - Manage'),
       body: Center(
         child: ReorderableListView(
-          onReorder: ((oldIndex, newIndex) {
-            setState(() {
-              if (newIndex > oldIndex) newIndex--;
-              final item = _entities.removeAt(oldIndex);
-              _entities.insert(newIndex, item);
-            });
-          }),
+          onReorder: _reorder,
           children: _entities
               .map((e) => EntityAdminView(
                     key: ValueKey(e),
