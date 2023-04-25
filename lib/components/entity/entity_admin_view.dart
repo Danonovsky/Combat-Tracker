@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:combat_tracker/components/entity/entity.dart';
 import 'package:combat_tracker/shared/widgets/flexible_input_number.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +14,8 @@ class _EntityAdminViewState extends State<EntityAdminView> {
   late final Entity _entity = widget.entity;
   late final TextEditingController _hpController = TextEditingController();
   late final TextEditingController _maxHpController = TextEditingController();
-  late final TextEditingController _initiativeController = TextEditingController();
+  late final TextEditingController _initiativeController =
+      TextEditingController();
 
   @override
   void initState() {
@@ -32,19 +31,29 @@ class _EntityAdminViewState extends State<EntityAdminView> {
 
   _updateHp() {
     setState(() {
-      _entity.hp = int.parse(_hpController.text == '' ? '0' : _hpController.text);
+      _entity.hp =
+          int.parse(_hpController.text == '' ? '0' : _hpController.text);
     });
   }
 
   _updateMaxHp() {
     setState(() {
-      _entity.maxHp = int.parse(_maxHpController.text == '' ? '0' : _maxHpController.text);
+      _entity.maxHp =
+          int.parse(_maxHpController.text == '' ? '0' : _maxHpController.text);
     });
   }
 
   _updateInitiative() {
     setState(() {
-      _entity.initiative = int.parse(_initiativeController.text == '' ? '0' : _initiativeController.text);
+      _entity.initiative = int.parse(
+          _initiativeController.text == '' ? '0' : _initiativeController.text);
+    });
+  }
+
+  _toggleSwitchHp(bool? value) {
+    if (value == null) return;
+    setState(() {
+      _entity.showHp = value;
     });
   }
 
@@ -72,7 +81,8 @@ class _EntityAdminViewState extends State<EntityAdminView> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(24.0)),
                           child: LinearProgressIndicator(
                             value: _entity.hp / _entity.maxHp,
                             color: _entity.color,
@@ -94,8 +104,19 @@ class _EntityAdminViewState extends State<EntityAdminView> {
             Row(
               children: [
                 FlexibleInputNumber(controller: _hpController, name: 'Hp'),
-                FlexibleInputNumber(controller: _maxHpController, name: 'Max Hp'),
-                FlexibleInputNumber(controller: _initiativeController, name: 'Initiative'),
+                FlexibleInputNumber(
+                    controller: _maxHpController, name: 'Max Hp'),
+                FlexibleInputNumber(
+                    controller: _initiativeController, name: 'Initiative'),
+                Flexible(
+                  child: Row(
+                    children: [
+                      Checkbox(
+                          value: _entity.showHp, onChanged: _toggleSwitchHp),
+                          const Text('Show HP')
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
